@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Personajes en Caldero</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #222;
+            color: white;
+        }
+        #contenedor {
+            position: relative;
+            display: inline-block;
+        }
+        #caldero {
+            width: 300px;
+        }
+        #resultado {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 18px;
+            font-weight: bold;
+            color: #fff;
+            text-align: center;
+            width: 80%;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 10px;
+        }
+        .boton {
+            padding: 12px 15px;
+            font-size: 16px;
+            background-color: #ff6600;
+            border: none;
+            color: white;
+            cursor: pointer;
+            margin: 5px;
+            border-radius: 5px;
+        }
+        .boton:hover {
+            background-color: #cc5500;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Generador de Personajes</h1>
+    
+    <div id="contenedor">
+        <img id="caldero" src="https://i.imgur.com/Fa8D4Tf.png" alt="Caldero de bruja">
+        <div id="resultado">
+            <p>🧙‍♂️ <b>Rol:</b> ???</p>
+            <p>😃 <b>Personalidad:</b> ???</p>
+            <p>🌎 <b>Situación:</b> ???</p>
+        </div>
+    </div>
+
+    <br>
+
+    <button class="boton" onclick="generarPersonaje()">🔮 Generar Todo</button>
+    <button class="boton" onclick="cambiarRol()">🧙‍♂️ Cambiar Rol</button>
+    <button class="boton" onclick="cambiarPersonalidad()">😃 Cambiar Personalidad</button>
+    <button class="boton" onclick="cambiarSituacion()">🌎 Cambiar Situación</button>
+
+    <script>
+        const roles = ["Guerrero", "Mago", "Ladrón", "Explorador", "Cazador", "Ingeniero", "Doctor", "Pirata", "Samurái", "Druida"];
+        const personalidades = ["Valiente", "Serio", "Alegre", "Gruñón", "Misterioso", "Tímido", "Optimista", "Arrogante", "Curioso", "Cínico"];
+        const situaciones = ["Cyberpunk", "Volver al Futuro", "Mundo Mágico", "Apocalipsis Zombie", "Mundo Acuático", "Steampunk", "Mundo Jurásico", "Zootopia"];
+
+        let rolActual = "???";
+        let personalidadActual = "???";
+        let situacionActual = "???";
+
+        function actualizarTexto() {
+            document.getElementById("resultado").innerHTML = `
+                <p>🧙‍♂️ <b>Rol:</b> ${rolActual}</p>
+                <p>😃 <b>Personalidad:</b> ${personalidadActual}</p>
+                <p>🌎 <b>Situación:</b> ${situacionActual}</p>
+            `;
+        }
+
+        function generarPersonaje() {
+            rolActual = roles[Math.floor(Math.random() * roles.length)];
+            personalidadActual = personalidades[Math.floor(Math.random() * personalidades.length)];
+            situacionActual = situaciones[Math.floor(Math.random() * situaciones.length)];
+            actualizarTexto();
+        }
+
+        function cambiarRol() {
+            rolActual = roles[Math.floor(Math.random() * roles.length)];
+            actualizarTexto();
+        }
+
+        function cambiarPersonalidad() {
+            personalidadActual = personalidades[Math.floor(Math.random() * personalidades.length)];
+            actualizarTexto();
+        }
+
+        function cambiarSituacion() {
+            situacionActual = situaciones[Math.floor(Math.random() * situaciones.length)];
+            actualizarTexto();
+        }
+    </script>
+
+</body>
+</html>
