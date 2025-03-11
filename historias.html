@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caldero Mágico</title>
+    
+    <!-- Fuente Gluten desde Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Gluten:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            text-align: center;
+            font-family: 'Gluten', cursive;
+            background-color: white;
+            color: black;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 300%;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .contenedor-general {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        #resultado {
+            font-size: 20px;
+            font-weight: 500;
+            color: black;
+            text-align: left;
+            width: 250px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        #contenedor {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            max-width: 900px; /* Imagen aún más grande */
+        }
+
+        #caldero {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .botones {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            max-width: 700px;
+            flex-wrap: nowrap; /* Evita que los botones salten de línea */
+            gap: 10px;
+        }
+
+        .boton {
+            padding: 12px 15px;
+            font-size: 16px;
+            background-color: #ff6600;
+            border: none;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+            flex: 1;
+            min-width: 120px; /* Evita que los botones sean demasiado pequeños */
+        }
+
+        .boton:hover {
+            background-color: #37ff65;
+        }
+
+        /* Responsive para móviles */
+        @media (max-width: 768px) {
+            .contenedor-general {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            #resultado {
+                width: 90%;
+                text-align: center;
+            }
+
+            .botones {
+                flex-direction: column;
+                width: 100%;
+                align-items: center;
+            }
+
+            .boton {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Caldero Mágico</h1>
+
+    <div class="contenedor-general">
+        <div id="resultado">
+            <p>🧙‍♂️ <b>Rol:</b> ???</p>
+            <p>😃 <b>Personalidad:</b> ???</p>
+            <p>🌎 <b>Situación:</b> ???</p>
+        </div>
+
+        <div id="contenedor">
+            <img id="caldero" src="banner.jpg" alt="Caldero de bruja">
+        </div>
+    </div>
+
+    <div class="botones">
+        <button class="boton" onclick="generarPersonaje()">🔮 Generar Todo</button>
+        <button class="boton" onclick="cambiarRol()">🧙‍♂️ Cambiar Rol</button>
+        <button class="boton" onclick="cambiarPersonalidad()">😃 Cambiar Personalidad</button>
+        <button class="boton" onclick="cambiarSituacion()">🌎 Cambiar Situación</button>
+    </div>
+
+    <script>
+          const roles = [
+            "Guerrero", "Mago", "Ladrón", "Explorador", "Cazador", "Ingeniero", "Doctor", "Pirata", "Samurái", "Druida",
+            "Robot Asesino", "Científico Loco", "Caballero Oscuro", "Hechicero Elemental", "Chamán", "Ninja", "Detective",
+            "Viajero del Tiempo", "Asesino a Sueldo", "Domador de Bestias", "Bardo", "Líder Rebelde", "Hacker", "Vampiro",
+            "Hombre Lobo", "Rey Exiliado", "Inventor", "Mercenario", "Cazafantasmas", "Alienígena Perdido", "Sacerdote",
+            "Mutante", "Mecánico", "Espía", "Psíquico", "Alquimista", "Titiritero", "General de Guerra", "Astronauta",
+            "Guardián de la Galaxia", "Superhéroe", "Antihéroe", "Vidente", "Cazador de Demonios", "Nigromante", "Ciborg",
+            "Maestro de Artes Marciales", "Trotamundos", "Forajido", "Guía Espiritual", "Encantador de Serpientes", "Demonio",
+            "Ángel", "Paladín", "Troll", "Dragón Humanoide", "Revolucionario", "Músico Callejero", "Chef de Batalla", "Monje Shaolin"
+        ];
+
+        const personalidades = [
+            "Valiente", "Serio", "Alegre", "Gruñón", "Misterioso", "Tímido", "Optimista", "Arrogante", "Curioso", "Cínico",
+            "Bromista", "Sarcástico", "Cobarde", "Soñador", "Frío y Calculador", "Amable y Comprensivo", "Salvaje e Impulsivo",
+            "Rebelde", "Introvertido", "Seductor", "Inteligente pero Distraído", "Protector", "Egoísta", "Tranquilo y Relajado",
+            "Competitivo", "Líder Natural", "Callado", "Impredecible", "Dramático", "Inocente y Dulce", "Melancólico", "Vengativo",
+            "Pacífico", "Materialista", "Indiferente", "Extrovertido", "Manipulador", "Cauteloso", "Orgulloso", "Noble",
+            "Místico", "Torpe", "Soñador Despistado", "Excéntrico", "Paciente", "Explosivo", "Leal", "Pícaro", "Terco",
+            "Inseguro", "Controlador", "Perfeccionista", "Despreocupado", "Encantador", "Recatado", "Racional", "Dependiente",
+            "Solidario", "Retorcido"
+        ];
+
+        const situaciones = [
+            "Cyberpunk", "Volver al Futuro", "Mundo Mágico", "Apocalipsis Zombie", "Mundo Acuático", "Steampunk",
+            "Mundo Jurásico", "Zootopia", "Mundo de Hielo", "Mundo de Lava", "Universo Paralelo", "Mundo Subterráneo",
+            "Reino de los Dioses", "Mundo Pixelado", "Fantasía Medieval", "Colonización Espacial", "Realidad Virtual",
+            "Isla Desierta", "Mundo de Juguetes", "Mundo Post-Apocalíptico", "Mundo Submarino", "Tierra Hueca", "Mundo de Papel",
+            "Invasión Alienígena", "Distopía Totalitaria", "Mundo de los Sueños", "Reino de los Gatos", "Cielo y Paraíso",
+            "Bosque Encantado", "Mundo de los Espíritus", "Dimensión Alternativa", "Mundo sin Color", "Tierra de Gigantes",
+            "Ciudades Voladoras", "Mundo de los Espejos", "Utopía Perfecta", "Mundo de Hadas", "Laboratorio Secreto",
+            "Reino de las Pesadillas", "Mundo Fantástico de Chocolate"
+        ];
+
+        let rolActual = "???";
+        let personalidadActual = "???";
+        let situacionActual = "???";
+
+
+        function actualizarTexto() {
+            document.getElementById("resultado").innerHTML = `
+                <p>🧙‍♂️ <b>Rol:</b> ${rolActual}</p>
+                <p>😃 <b>Personalidad:</b> ${personalidadActual}</p>
+                <p>🌎 <b>Situación:</b> ${situacionActual}</p>
+            `;
+        }
+
+        function generarPersonaje() {
+            rolActual = roles[Math.floor(Math.random() * roles.length)];
+            personalidadActual = personalidades[Math.floor(Math.random() * personalidades.length)];
+            situacionActual = situaciones[Math.floor(Math.random() * situaciones.length)];
+            actualizarTexto();
+        }
+
+        function cambiarRol() {
+            rolActual = roles[Math.floor(Math.random() * roles.length)];
+            actualizarTexto();
+        }
+
+        function cambiarPersonalidad() {
+            personalidadActual = personalidades[Math.floor(Math.random() * personalidades.length)];
+            actualizarTexto();
+        }
+
+        function cambiarSituacion() {
+            situacionActual = situaciones[Math.floor(Math.random() * situaciones.length)];
+            actualizarTexto();
+        }
+    </script>
+
+</body>
+</html>
