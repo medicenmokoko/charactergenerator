@@ -7,29 +7,32 @@
     <style>
         body {
             text-align: center;
-            font-family: Arial, sans-serif;
-            background-color: #222;
+            font-family: gluten;
+            background-color: #ffffff;
             color: white;
+            
         }
         #contenedor {
             position: relative;
             display: inline-block;
         }
         #caldero {
-            width: 350px;
+            width: 85%;
+            height: 85%;
+            align-items: center;
         }
         #resultado {
             position: absolute;
-            top: 35%;
-            left: 50%;
+            top: 25%;
+            left: 28%;
             transform: translate(-50%, -50%);
             font-size: 18px;
-            font-weight: bold;
-            color: #fff;
-            text-align: center;
-            width: 60%;
-            background: rgba(0, 0, 0, 0.5);
-            padding: 10px;
+            font-weight: 200;
+            color: #000;
+            text-align: left;
+            width: 30%;
+            background: rgba(0, 0, 0, 0);
+            padding: 10px 10px 10px 50px;
             border-radius: 10px;
         }
         .boton {
@@ -43,16 +46,20 @@
             border-radius: 5px;
         }
         .boton:hover {
-            background-color: #cc5500;
+            background-color: #37ff65;
         }
     </style>
 </head>
 <body>
+    <h1 style=
+    "font-size: 300%;
+     font-weight: 800;
+     color: #000 "
 
-    <h1>Generador de Personajes</h1>
+     >Generador de Personajes</h1>
     
     <div id="contenedor">
-        <img id="caldero" src="caldero.jpeg" alt="Caldero de bruja">
+        <img id="caldero" src="banner.jpg" alt="Caldero de bruja">
         <div id="resultado">
             <p>🧙‍♂️ <b>Rol:</b> ???</p>
             <p>😃 <b>Personalidad:</b> ???</p>
@@ -61,11 +68,10 @@
     </div>
 
     <br>
-
-    <button class="boton" onclick="generarPersonaje()">🔮 Generar Todo</button>
-    <button class="boton" onclick="cambiarRol()">🧙‍♂️ Cambiar Rol</button>
-    <button class="boton" onclick="cambiarPersonalidad()">😃 Cambiar Personalidad</button>
-    <button class="boton" onclick="cambiarSituacion()">🌎 Cambiar Situación</button>
+    <button  class="boton" onclick="generarPersonaje()" style="font-family: gluten;">🔮 Generar Todo</button>
+    <button class="boton" onclick="cambiarRol()"style="font-family: gluten;">🧙‍♂️ Cambiar Rol</button>
+    <button class="boton" onclick="cambiarPersonalidad()"style="font-family: gluten;">😃 Cambiar Personalidad</button>
+    <button class="boton" onclick="cambiarSituacion()"style="font-family: gluten;">🌎 Cambiar Situación</button>
 
     <script>
         const roles = ["Guerrero", "Mago", "Ladrón", "Explorador", "Cazador", "Ingeniero", "Doctor", "Pirata", "Samurái", "Druida"];
