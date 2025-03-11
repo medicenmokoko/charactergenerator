@@ -4,7 +4,7 @@ body {
     background-color: #f4f4f4;
 }
 header {
-    background-color: #333;
+    background-color: #a36262;
     color: white;
     padding: 10px;
 }
@@ -26,3 +26,5 @@ main {
     background-color: white;
     border-radius: 10px;
 }
+
+@import url(https://fonts.googleapis.com/css?family=Gluten);
