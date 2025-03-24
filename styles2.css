@@ -1,0 +1,75 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+}
+
+.contenedor {
+    position: relative;
+    width: 300px;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.personaje {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cabeza {
+    position: absolute;
+    top: -80px;
+    width: 60px;
+    height: 60px;
+    background-color: #ffcc00;
+    z-index: 3;
+}
+
+.triangulo {
+    width: 0;
+    height: 0;
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+    border-bottom: 60px solid #ffcc00;
+    background: none;
+}
+
+.cuerpo {
+    position: relative;
+    width: 100px;
+    height: 120px;
+    background-color: #00ccff;
+    transition: all 0.5s ease;
+    z-index: 2;
+}
+
+.brazo, .pierna {
+    position: absolute;
+    width: 20px;
+    background-color: #333;
+    transform-origin: top center;
+    z-index: 1;
+}
+
+.brazo.izquierdo { left: -30px; top: 20px; }
+.brazo.derecho { right: -30px; top: 20px; }
+
+.pierna.izquierda { left: 20px; bottom: -50px; }
+.pierna.derecha { right: 20px; bottom: -50px; }
+
+button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    background-color: #ff5733;
+    color: white;
+    cursor: pointer;
+}
